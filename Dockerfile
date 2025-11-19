@@ -1,14 +1,11 @@
-# Use a lightweight OpenJDK 17 base image
-FROM eclipse-temurin:17-jdk-jammy
+# Use ARM64 OpenJDK 17 base image
+FROM eclipse-temurin:17-jdk
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy Gradle build files
+# Copy your JAR built by Gradle
 COPY build/libs/*.jar app.jar
 
-# Expose the port your Spring Boot app will run on
-EXPOSE 8080
-
-# Run the jar file
+# Run Spring Boot
 ENTRYPOINT ["java", "-jar", "app.jar"]
